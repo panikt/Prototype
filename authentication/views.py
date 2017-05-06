@@ -1,9 +1,10 @@
 
-from rest_framework import status, viewsets, permissions
+from rest_framework import status, viewsets, permissions, views
 from rest_framework.response import Response
 from authentication.serializers import AccountSerializer
 from authentication.models import Account
 from authentication.permissions import IsAccountOwner
+from django.contrib.auth import logout
 
 class AccountViewSet(viewsets.ModelViewSet):
     lookup_field = 'username'
@@ -30,3 +31,11 @@ class AccountViewSet(viewsets.ModelViewSet):
             'status': 'Bad request',
             'message': 'Account could not be created with received data.'
         }, status=status.HTTP_400_BAD_REQUEST)
+
+class LogoutView(views.APIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request, format=None):
+        logout(request)
+
+        return Response({}, status=status.HTTP_204_NO_CONTENT)

@@ -5,7 +5,11 @@
     .module('prototype', [
       'prototype.routes',
       'prototype.authentication',
-      'prototype.config'
+      'prototype.config',
+      'prototype.layout',
+      'prototype.posts',
+      'prototype.utils',
+      'prototype.profiles'
     ]);
 
   angular
@@ -25,5 +29,5 @@
     $http.defaults.xsrfCookieName = 'csrftoken';
   }
 
-  
+
 })();
