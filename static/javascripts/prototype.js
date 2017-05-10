@@ -9,7 +9,8 @@
       'prototype.layout',
       'prototype.posts',
       'prototype.utils',
-      'prototype.profiles'
+      'prototype.profiles',
+      'prototype.images',
     ]);
 
   angular

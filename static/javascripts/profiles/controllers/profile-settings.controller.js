@@ -21,6 +21,8 @@
 
     vm.destroy = destroy;
     vm.update = update;
+    vm.uploadImage = uploadImage();
+    vm.newImage = {};
 
     activate();
 
@@ -96,7 +98,10 @@
       }
     }
 
-
+    function uploadImage(){
+       console.log("Hoafadfa");
+       vm.newImage.save()
+    }
     /**
     * @name update
     * @desc Update this user's profile

@@ -1,5 +1,11 @@
 <div class="col-md-4 col-md-offset-4">
   <div class="well" ng-show="vm.profile">
+    <form name="image_upload"  ng-submit="vm.uploadImage()">
+      <input type="file" ng-files-model="vm.newImage.Image">
+      <button type="submit">upload</button>
+     </form>
+
+
     <form role="form" class="settings" ng-submit="vm.update()">
       <div class="form-group">
         <label for="settings__email">Email</label>

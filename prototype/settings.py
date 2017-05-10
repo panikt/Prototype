@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'compressor',
     'posts',
+    'images',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = ''
 STATICFILES_DIRS = ( os.path.join('static'), )
+
+MEDIA_URL = '/media/'
+MEDIT_ROOT = 'media/'

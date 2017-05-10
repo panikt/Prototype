@@ -1,6 +1,7 @@
-from django.contrib.auth.models import AbstractBaseUser
-from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
+from django.utils.translation import ugettext as _
+
 
 class AccountManager(BaseUserManager):
         def create_user(self, email, password=None, **kwargs):
@@ -26,6 +27,9 @@ class AccountManager(BaseUserManager):
 
             return account
 
+def upload_to(instance, filename):
+    return 'user_profile_image/{}/{}'.format(instance.email, filename)
+
 class Account(AbstractBaseUser):
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=40,unique=True)
@@ -39,6 +43,7 @@ class Account(AbstractBaseUser):
     CreatedAt = models.DateTimeField(auto_now_add=True)
     ModifiedAt = models.DateTimeField(auto_now=True)
 
+    image = models.ImageField(_('image'), blank=True, null=True, upload_to=upload_to)
     objects = AccountManager()
 
     USERNAME_FIELD = 'email'
