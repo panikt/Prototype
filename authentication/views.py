@@ -34,21 +34,6 @@ class AccountViewSet(viewsets.ModelViewSet):
             'message': 'Account could not be created with received data.'
         }, status=status.HTTP_400_BAD_REQUEST)
 
-    @detail_route(methods=['POST'], permission_classes=[IsAdminOrIsSelf])
-    @parser_classes((FormParser, MultiPartParser,))
-    def image(self, request, *args, **kwargs):
-        if 'upload' in request.data:
-            user_profile = self.get_object()
-            user_profile.image.delete()
-
-            upload = request.data['upload']
-
-            user_profile.image.save(upload.name, upload)
-
-            return Response(status=HTTP_201_CREATED, headers={'Location': user_profile.image.url})
-        else:
-            return Response(status=HTTP_400_BAD_REQUEST)
-
 class LogoutView(views.APIView):
     permission_classes = (permissions.IsAuthenticated,)
 

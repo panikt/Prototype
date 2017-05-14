@@ -10,19 +10,20 @@
     .controller('ProfileSettingsController', ProfileSettingsController);
 
   ProfileSettingsController.$inject = [
-    '$location', '$routeParams', 'Authentication', 'Profile', 'Snackbar'
+    '$location', '$routeParams', 'Authentication', 'Profile', 'Snackbar', 'Images'
   ];
 
   /**
   * @namespace ProfileSettingsController
   */
-  function ProfileSettingsController($location, $routeParams, Authentication, Profile, Snackbar) {
+  function ProfileSettingsController($location, $routeParams, Authentication, Profile, Snackbar, Images) {
     var vm = this;
 
     vm.destroy = destroy;
     vm.update = update;
-    vm.uploadImage = uploadImage();
+    vm.uploadImage = uploadImage;
     vm.newImage = {};
+    vm.imagesToUpload = {};
 
     activate();
 
@@ -98,9 +99,18 @@
       }
     }
 
-    function uploadImage(){
-       console.log("Hoafadfa");
-       vm.newImage.save()
+    function uploadImage() {
+        Images.save(vm.imagesToUpload).then(imagesSuccessFn, imagesErrorFn);
+
+        function imagesSuccessFn(data, status, headers, config) {
+            vm.profile.image = data.data.image;
+        }
+
+
+        function imagesErrorFn(data, status, headers, config) {
+          Snackbar.error(data.error);
+        }
+
     }
     /**
     * @name update

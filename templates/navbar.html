@@ -1,19 +1,20 @@
 <nav class="navbar navbar-default" role="navigation" ng-controller="NavbarController as vm">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pyntohs-nav">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pyntoh-nav">
         <span class="sr-only">Toggle Navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Pynyoh</a>
+      <a class="navbar-brand" href="/">Pyntoh Prototype</a>
     </div> <!-- ./navbar-header -->
 
     <div class="collapse navbar-collapse" id="pyntoh-nav">
+      <img ng-src="{{user.image}}" width=20 height=20/>
       <ul class="nav navbar-nav pull-right">
         {% if user.is_authenticated %}
-          <li><a href="/+{{ user.username }}">+{{ user.username }}</a></li>
+          <li><a href="/+{{ user.username }}">{{ user.username }}</a></li>
           <li><a href="/+{{ user.username }}/settings">Settings</a></li>
           <li><a href="javascript:void(0)" ng-click="vm.logout()">Logout</a></li>
         {% else %}

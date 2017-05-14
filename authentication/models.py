@@ -27,9 +27,6 @@ class AccountManager(BaseUserManager):
 
             return account
 
-def upload_to(instance, filename):
-    return 'user_profile_image/{}/{}'.format(instance.email, filename)
-
 class Account(AbstractBaseUser):
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=40,unique=True)
@@ -40,10 +37,12 @@ class Account(AbstractBaseUser):
 
     is_admin = models.BooleanField(default=False)
 
+    image = models.CharField(max_length=255,blank=True,default='http://127.0.0.1:8000/media/gallery/default.png')
+
+
     CreatedAt = models.DateTimeField(auto_now_add=True)
     ModifiedAt = models.DateTimeField(auto_now=True)
 
-    image = models.ImageField(_('image'), blank=True, null=True, upload_to=upload_to)
     objects = AccountManager()
 
     USERNAME_FIELD = 'email'

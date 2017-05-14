@@ -9,11 +9,13 @@
     .module('prototype.images.controllers')
     .controller('ImagesController', ImagesController);
 
-  ImagesController.$inject = ['$scope','Images'];
+  ImagesController.$inject = ['$scope','Images', 'Snackbar'];
 
-  function ImagesController($scope, Images) {
+  function ImagesController($scope, Images, Snackbar) {
     var vm = this;
+    vm.uploadImage = uploadImage;
     vm.images = {};
+    vm.imagesToUpload = {};
 
     activate();
 
@@ -22,19 +24,11 @@
 
         Images.all().then(imagesSuccessFn, imagesErrorFn);
 
-        /**
-        * @name postsSuccessFn
-        * @desc Update posts array on view
-        */
         function imagesSuccessFn(data, status, headers, config) {
           vm.images = data.data;
         }
 
 
-        /**
-        * @name postsErrorFn
-        * @desc Show snackbar with error
-        */
         function imagesErrorFn(data, status, headers, config) {
           Snackbar.error(data.error);
         }
@@ -44,5 +38,18 @@
     function image() {
     }
 
+    function uploadImage() {
+        Images.save(vm.imagesToUpload).then(imagesSuccessFn, imagesErrorFn);
+
+        function imagesSuccessFn(data, status, headers, config) {
+          console.log(data.data);
+        }
+
+
+        function imagesErrorFn(data, status, headers, config) {
+          Snackbar.error(data.error);
+        }
+
+    }
   }
 })();

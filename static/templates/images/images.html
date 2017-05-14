@@ -1,1 +1,5 @@
-<div ng-repeat='im in vm.images'>{{im}}</div>
+<div ng-repeat='im in vm.images'>{{im}}<img ng-src="{{im.image}}"></img></div>
+<form class="form" name="uploadform" ng-submit="vm.uploadImage()" enctype="multipart/form-data">
+  <input type="file" file-model="vm.imagesToUpload"></input>
+  <button type="submit">Upload</button>
+</form>
