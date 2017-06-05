@@ -1,7 +1,6 @@
-  <div ng-repeat="column in vm.columns">
-    <div class="row" ng-cloak>
+  <div ng-repeat="column in vm.columns.slice().reverse()| orderBy:'-'">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div ng-repeat="post in column">
+      <div ng-repeat="post in column ">
         <post post="post"></post>
       </div>
     </div>
@@ -12,4 +11,3 @@
       <em>There are no posts here.</em>
     </div>
   </div>
-</div>

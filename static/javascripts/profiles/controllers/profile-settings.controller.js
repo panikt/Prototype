@@ -10,22 +10,34 @@
     .controller('ProfileSettingsController', ProfileSettingsController);
 
   ProfileSettingsController.$inject = [
-    '$location', '$routeParams', 'Authentication', 'Profile', 'Snackbar', 'Images'
+    '$location', '$routeParams', 'Authentication', 'Profile', 'Snackbar', 'Images', '$scope', 'Upload', '$timeout', "ngDialog", 'uiGmapGoogleMapApi'
   ];
 
   /**
   * @namespace ProfileSettingsController
   */
-  function ProfileSettingsController($location, $routeParams, Authentication, Profile, Snackbar, Images) {
+  function ProfileSettingsController($location, $routeParams, Authentication, Profile, Snackbar, Images, $scope, Upload, $timeout, ngDialog, uiGmapGoogleMapApi) {
     var vm = this;
 
     vm.destroy = destroy;
     vm.update = update;
-    vm.uploadImage = uploadImage;
     vm.newImage = {};
     vm.imagesToUpload = {};
 
+    $scope.map = {
+        center: {
+              latitude: 45,
+              longitude: -73
+            }, zoom: 8 };
+    // The "then" callback function provides the google.maps object.
+        uiGmapGoogleMapApi.then(function(maps) {
+            console.log('Google Maps loaded');
+        });
+
+
     activate();
+
+
 
 
     /**
@@ -57,6 +69,8 @@
       */
       function profileSuccessFn(data, status, headers, config) {
         vm.profile = data.data;
+        vm.profile.dob = new Date(vm.profile.dob);
+
       }
 
       /**
@@ -99,6 +113,7 @@
       }
     }
 
+/*
     function uploadImage() {
         Images.save(vm.imagesToUpload).then(imagesSuccessFn, imagesErrorFn);
 
@@ -111,7 +126,47 @@
           Snackbar.error(data.error);
         }
 
+    } */
+
+    vm.uploadImage = function (dataUrl, name)  {
+
+          Images.upload(dataUrl, name).then(imagesSuccessFn, imagesErrorFn, imagesProgressFn);
+
+          function imagesSuccessFn(response) {
+            $timeout(function () {
+                $scope.closeThisDialog(response.data);
+            });
+          }
+
+
+          function imagesErrorFn(response) {
+              if (response.status > 0) {
+                  Snackbar.error(response.status  + ': ' + response.data);
+              }
+          }
+
+          function imagesProgressFn(evt) {
+            console.log(parseInt(100.0 * evt.loaded / evt.total));
+
+          }
     }
+
+    vm.openDialog = function ()  {
+
+          var dialog = ngDialog.open({
+          template: '/static/templates/images/images1.html',
+          controller: 'ProfileSettingsController as vm'
+        });
+
+        dialog.closePromise.then(function (data) {
+          if (data && data.value) {
+              vm.profile.image = data.value.image;
+          }
+        });
+
+    }
+
+
     /**
     * @name update
     * @desc Update this user's profile

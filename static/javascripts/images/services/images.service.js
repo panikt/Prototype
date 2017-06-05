@@ -9,17 +9,18 @@
     .module('prototype.images.services')
     .factory('Images', Images);
 
-  Images.$inject = ['$http'];
+  Images.$inject = ['$http', 'Upload'];
 
   /**
   * @namespace Posts
   * @returns {Factory}
   */
-  function Images($http) {
+  function Images($http, Upload) {
     var Images = {
       get: get,
       all: all,
       save: save,
+      upload: upload,
     };
 
     return Images;
@@ -49,6 +50,20 @@
           'headers': {'Content-Type': undefined },
         });
     }
+
+
+    function upload(file, name) {
+      var randomNum = Math.random().toString(36).substring(7);
+      var blob = Upload.dataUrltoBlob(file, name);
+      return  Upload.upload({
+            url: '/api/v1/images/',
+            data: {
+                name:randomNum,
+                image: blob
+            },
+          });
+      }
+
   }
 
 })();

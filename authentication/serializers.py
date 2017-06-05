@@ -1,15 +1,19 @@
 from django.contrib.auth import update_session_auth_hash
 from rest_framework import serializers
 from authentication.models import Account
+from drf_enum_field.serializers import EnumFieldSerializerMixin
 
-class AccountSerializer(serializers.ModelSerializer):
+class AccountSerializer(EnumFieldSerializerMixin, serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=False)
     confirm_password = serializers.CharField(write_only=True, required=False)
     class Meta:
         model = Account
         fields = ('id', 'email', 'username','CreatedAt', 'ModifiedAt',
-                'first_name', 'last_name', 'tagline', 'password', 'confirm_password', 'image' )
+                'first_name', 'last_name', 'tagline', 'password', 'confirm_password', 'image',
+                'phone_number1','phone_number2', 'address1','address2','address3','dob','gender',
+                 )
         read_only_fields = ('CreatedAt', 'ModifiedAt')
+
 
         def create(self, validated_data):
             return Account.objects.create(**validated_data)

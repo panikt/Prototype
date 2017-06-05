@@ -5,8 +5,10 @@
     .module('prototype.posts', [
       'prototype.posts.controllers',
       'prototype.posts.directives',
-      'prototype.posts.services'
+      'prototype.posts.services',
     ]);
+
+  
 
   angular
     .module('prototype.posts.controllers', []);
@@ -16,4 +18,6 @@
 
   angular
     .module('prototype.posts.services', []);
+
+
 })();

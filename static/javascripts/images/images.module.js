@@ -15,6 +15,6 @@
       .module('prototype.images.directives', []);
 
     angular
-      .module('prototype.images.services', []);
+      .module('prototype.images.services', ['ngFileUpload', 'ngImgCrop']);
 
 })();

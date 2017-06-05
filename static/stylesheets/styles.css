@@ -19,3 +19,15 @@
   bottom: 20px;
   right: 20px;
 }
+
+.cropArea {
+    background: #E4E4E4;
+    overflow: hidden;
+    width:410px;
+    height:400px;
+}
+
+
+form .progress {
+    line-height: 15px;
+}

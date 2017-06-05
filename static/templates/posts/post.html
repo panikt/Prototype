@@ -1,18 +1,21 @@
 <div class="row">
-    <div class="well">
+  <div class="well">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="post">
+        <div class="post" id="post-item">
           <div class="post__meta">
             <img ng-src="{{post.author.image}}" width=40 height=40 />
                 <a href="/+{{ post.author.username }}">
                   {{ post.author.username }}
-                </a>
+                </a> <br/>
+                {{post.created_at | date:'yyyy-MM-dd HH:mm'}}
           </div>
-
+          <div>
+              <img ng-show="post.image" ng-src="{{post.image}}"  width=300 height=300 onError="angular.element(this).scope().post.image = True" />
+          </div>
           <div class="post__content">
-            {{ post.content }}
+              {{ post.content }}
           </div>
         </div>
       </div>
-  </div>
+    </div>
 </div>

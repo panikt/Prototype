@@ -9,16 +9,17 @@
     .module('prototype.layout.controllers')
     .controller('IndexController', IndexController);
 
-  IndexController.$inject = ['$scope', 'Authentication', 'Posts', 'Snackbar'];
+  IndexController.$inject = ['$scope', 'Authentication', 'Posts', 'ProviderList', 'Snackbar'];
 
   /**
   * @namespace IndexController
   */
-  function IndexController($scope, Authentication, Posts, Snackbar) {
+  function IndexController($scope, Authentication, Posts, ProviderList, Snackbar) {
     var vm = this;
 
     vm.isAuthenticated = Authentication.isAuthenticated();
     vm.posts = [];
+    vm.providerlist =[];
 
     activate();
 
@@ -28,6 +29,8 @@
     * @memberOf thinkster.layout.controllers.IndexController
     */
     function activate() {
+      ProviderList.all().then(plSuccessFn, plErrorFn);
+
       Posts.all().then(postsSuccessFn, postsErrorFn);
 
       $scope.$on('post.created', function (event, post) {
@@ -37,6 +40,9 @@
       $scope.$on('post.created.error', function () {
         vm.posts.shift();
       });
+
+
+
 
 
       /**
@@ -55,6 +61,18 @@
       function postsErrorFn(data, status, headers, config) {
         Snackbar.error(data.error);
       }
+
+
+      function plSuccessFn(data, status, headers, config) {
+        vm.providerlist = data.data;
+      }
+
+
+
+      function plErrorFn(data, status, headers, config) {
+        Snackbar.error(data.error);
+      }
+
     }
   }
 })();

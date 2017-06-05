@@ -9,19 +9,24 @@
     .module('prototype.profiles.controllers')
     .controller('ProfileController', ProfileController);
 
-  ProfileController.$inject = ['$location', '$routeParams', 'Posts', 'Profile', 'Snackbar'];
+  ProfileController.$inject = ['$location', '$routeParams', 'Posts', 'Profile', 'Snackbar', 'Authentication'];
 
   /**
   * @namespace ProfileController
   */
-  function ProfileController($location, $routeParams, Posts, Profile, Snackbar) {
+  function ProfileController($location, $routeParams, Posts, Profile, Snackbar, Authentication) {
     var vm = this;
 
     vm.profile = undefined;
     vm.posts = [];
+    vm.isAuthenticated = isAuthenticated;
+
 
     activate();
 
+    function isAuthenticated(){
+      return Authentication.isAuthenticated();
+    }
     /**
     * @name activate
     * @desc Actions to be performed when this controller is instantiated
@@ -39,6 +44,7 @@
       */
       function profileSuccessFn(data, status, headers, config) {
         vm.profile = data.data;
+        vm.profile.dob = new Date(vm.profile.dob);
       }
 
 

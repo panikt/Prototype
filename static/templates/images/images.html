@@ -1,5 +1,39 @@
-<div ng-repeat='im in vm.images'>{{im}}<img ng-src="{{im.image}}"></img></div>
-<form class="form" name="uploadform" ng-submit="vm.uploadImage()" enctype="multipart/form-data">
+<!--<div ng-repeat='im in vm.images'>{{im}}<img ng-src="{{im.image}}"></img></div>
+-->
+
+<a class="btn btn-primary btn-fab btn-raised mdi-content-add btn-add-new-post"
+  href="javascript:void(0)"
+  ng-dialog="/static/templates/images/images1.html"
+  ng-dialog-controller="ImagesController as vm">+</a>
+
+<form class="form" name="uploadform"  enctype="multipart/form-data">
+        <button ngf-select ng-model="picFile" accept="image/*" >a Update Picture</button>
+        <table>
+            <tr>
+              <td>
+                <div ngf-drop ng-model="picFile" ngf-pattern="image/*"  class="cropArea">
+                    <img-crop image="picFile  | ngfDataUrl" result-image="croppedDataUrl" ng-init="croppedDataUrl=''">  </img-crop>
+                </div>
+              </td>
+              <td>
+                <div>
+                    <img ng-src="{{croppedDataUrl}}" />
+                </div>
+              </td>
+            </tr>
+          </table>
+
+        <button ng-click="vm.uploadImage(croppedDataUrl, picFile.name)">Submit</button>
+
+        <span class="progress" ng-show="progress >= 0">
+          <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+        </span>
+
+        <span ng-show="result">Upload Successful</span>
+        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+</form>
+
+<!--<form class="form" name="uploadform" ng-submit="vm.uploadImage()" enctype="multipart/form-data">
   <input type="file" file-model="vm.imagesToUpload"></input>
   <button type="submit">Upload</button>
-</form>
+</form>-->
