@@ -9,12 +9,12 @@
 
 
   angular
-    .module('prototype.profiles.controllers', ['ngFileUpload', 'ngImgCrop', 'uiGmapgoogle-maps'  ])
+    .module('prototype.profiles.controllers', ['ngFileUpload', 'ngImgCrop', 'uiGmapgoogle-maps',   ])
     .config(function(uiGmapGoogleMapApiProvider) {
         uiGmapGoogleMapApiProvider.configure({
        key: 'AIzaSyA85svKBz3q5uLtJobAHj0CE4TE76Sz2zo',
        v: '3.27',
-       libraries: 'weather,geometry,visualization'
+       libraries: 'weather,geometry,visualization,places'
       });
    });
 
