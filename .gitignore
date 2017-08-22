@@ -11,6 +11,7 @@ $RECYCLE.BIN/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*.sqlite3
 
 # C extensions
 *.so
