@@ -29,30 +29,8 @@
     */
     function activate() {
       $scope.$watchCollection(function () { return $scope.posts; }, render);
-      $scope.$watch(function () { return $(window).width(); }, render);
+//      $scope.$watch(function () { return $(window).width(); }, render);
     }
-
-
-    /**
-    * @name calculateNumberOfColumns
-    * @desc Calculate number of columns based on screen width
-    * @returns {Number} The number of columns containing Posts
-    * @memberOf thinkster.posts.controllers.PostsControllers
-    */
-    function calculateNumberOfColumns() {
-      var width = $(window).width();
-
-      if (width >= 1200) {
-        return 4;
-      } else if (width >= 992) {
-        return 3;
-      } else if (width >= 768) {
-        return 2;
-      } else {
-        return 1;
-      }
-    }
-
 
     /**
     * @name approximateShortestColumn
@@ -104,14 +82,13 @@
       if (current !== original) {
         vm.columns = [];
 
-        for (var i = 0; i < calculateNumberOfColumns(); ++i) {
+        for (var i = 0; i < current.length; ++i) {
           vm.columns.push([]);
         }
 
         for (var i = 0; i < current.length; ++i) {
-          var column = approximateShortestColumn();
-
-          vm.columns[column].push(current[i]);
+          if(current[i])
+            vm.columns[i].push(current[i]);
         }
       }
     }

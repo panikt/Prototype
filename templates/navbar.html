@@ -1,20 +1,22 @@
 <nav class="navbar navbar-default" role="navigation" ng-controller="NavbarController as vm">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pyntohs-nav">
+  <div class="container-fluid" id="pyntoh-top-nav">
+    <div class="navbar-header"  id="pyntoh-top-logo">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pyntoh-nav">
         <span class="sr-only">Toggle Navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Pynyoh</a>
+      <a class="navbar-brand" href="/">Pyntoh Prototype</a>
     </div> <!-- ./navbar-header -->
 
     <div class="collapse navbar-collapse" id="pyntoh-nav">
-      <ul class="nav navbar-nav pull-right">
+     <ul class="nav navbar-nav pull-right" id="pyntoh-nav-links">
         {% if user.is_authenticated %}
-          <li><a href="/+{{ user.username }}">+{{ user.username }}</a></li>
-          <li><a href="/+{{ user.username }}/settings">Settings</a></li>
+          <li>  <img ng-src="{{user.image}}" width=20 height=20/>
+          <a href="/+{{ user.username }}">{{ user.username }}</a></li>
+          <li><a href="/+{{ user.username }}/settings">My Account</a></li>
+          <li><a href="/wishlist">Wish List</a></li>
           <li><a href="javascript:void(0)" ng-click="vm.logout()">Logout</a></li>
         {% else %}
           <li><a href="/login">Login</a></li>

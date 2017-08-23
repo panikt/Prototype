@@ -1,0 +1,115 @@
+
+#pyntoh-nav {
+  float:right;
+}
+
+#pyntoh-top-logo {
+  float:left;
+  margin: 0px 0px 0px 0px;
+}
+
+#pyntoh-nav-links li a {
+  float:right;
+  margin: 0 0 0 0;
+  padding: 5px 25px 25px 5px;
+}
+
+#padding-post-name {
+  margin: 10px 10px 10px 10px;
+  padding: 5px 20px 20px 20px;
+}
+
+
+
+#post-item {
+  margin-top:0px;
+  margin-right:0px;
+  margin-left:0px;
+  margin-bottom:0px;
+  width:300px;
+  max-width:300px;
+
+}
+
+.provider-wishlist-heart {
+  float:right;
+}
+.post__content {
+    word-wrap: break-word;
+}
+
+.provider-post-image {
+  margin-top:5px;
+  margin-right:5px;
+  margin-left:5px;
+  margin-bottom:5px;
+}
+
+.provider-sample-pic {
+  margin-top:5px;
+  margin-right:5px;
+  margin-left:5px;
+  margin-bottom:5px;
+}
+
+.img-profile-post {
+  margin-top:5px;
+  margin-right:5px;
+  margin-left:5px;
+  margin-bottom:5px;
+
+}
+
+.provider-post tr td{
+  margin-top:5px;
+  margin-right:5px;
+  margin-left:5px;
+  margin-bottom:5px;
+}
+.provider-post {
+  margin-top:0px;
+  margin-right:0px;
+  margin-left:0px;
+  margin-bottom:0px;
+  width:600px;
+  max-width:600px;
+  height:120px;
+  min-height:120px;
+
+}
+
+.profile-provider-post {
+  margin-top:0px;
+  margin-right:0px;
+  margin-left:0px;
+  margin-bottom:0px;
+  width:600px;
+  max-width:600px;
+  height:120px;
+  min-height:120px;
+
+}
+
+.angular-google-map-container {
+  height: 400px;
+}
+
+.profile-provider-post tr td{
+  margin-top:5px;
+  margin-right:50px;
+  margin-left:50px;
+  margin-bottom:5px;
+    padding: 5px 0px 0px 20px;
+}
+
+.profile-provider-post-photoes {
+  margin-top:0px;
+  margin-right:0px;
+  margin-left:0px;
+  margin-bottom:0px;
+  width:900px;
+  max-width:900px;
+  height:120px;
+  min-height:120px;
+
+}

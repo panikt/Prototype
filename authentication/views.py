@@ -1,10 +1,12 @@
 
 from rest_framework import status, viewsets, permissions, views
 from rest_framework.response import Response
+from rest_framework.parsers import FormParser, MultiPartParser
 from authentication.serializers import AccountSerializer
 from authentication.models import Account
-from authentication.permissions import IsAccountOwner
+from authentication.permissions import IsAccountOwner, IsAdminOrIsSelf
 from django.contrib.auth import logout
+from rest_framework.decorators import detail_route, parser_classes
 
 class AccountViewSet(viewsets.ModelViewSet):
     lookup_field = 'username'

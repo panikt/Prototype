@@ -13,8 +13,15 @@
 <script type="text/javascript" src="{% static 'bower_components/angular/angular.js' %}"></script>
 <script type="text/javascript" src="{% static 'bower_components/angular-route/angular-route.js' %}"></script>
 <script type="text/javascript" src="{% static 'bower_components/angular-cookies/angular-cookies.js' %}"></script>
-
+<script type="text/javascript" src="{% static 'bower_components/ng-file-model/ng-file-model.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/ng-file-upload/ng-file-upload.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/ng-img-crop/compile/unminified/ng-img-crop.js' %}"></script>
 <script type="text/javascript" src="{% static 'bower_components/ng-dialog/js/ngDialog.js' %}"></script>
+<!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA85svKBz3q5uLtJobAHj0CE4TE76Sz2zo&callback=initMap" type="text/javascript"></script>-->
+<script type="text/javascript" src="{% static 'bower_components/lodash/dist/lodash.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/angular-simple-logger/dist/angular-simple-logger.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/angular-google-maps/dist/angular-google-maps.js' %}"></script>
+
 <script type="text/javascript" src="{% static 'lib/snackbarjs/snackbar.min.js' %}"></script>
 
 
@@ -29,15 +36,23 @@
 <script type="text/javascript" src="{% static 'javascripts/layout/controllers/navbar.controllers.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/posts/posts.module.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/posts/services/posts.service.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/posts/services/providerlist.service.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/utils/utils.module.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/utils/services/snackbar.service.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/layout/controllers/index.controller.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/posts/directives/posts.directive.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/posts/controllers/posts.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/posts/directives/providerlist.directive.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/posts/controllers/providerlist.controller.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/posts/directives/post.directive.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/posts/controllers/new-post.controller.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/profiles/profiles.module.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/profiles/services/profile.service.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/profiles/directives/profile.directive.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/profiles/controllers/profile.controller.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/profiles/controllers/profile-settings.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/images/images.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/images/services/images.service.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/images/controllers/images.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/images/directives/images.directive.js' %}"></script>
 {% endcompress %}

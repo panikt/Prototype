@@ -1,10 +1,18 @@
 <form role="form" ng-submit="vm.submit()">
   <div class="form-group">
-    <label for="post__content">New Post</label>
+    <label for="post__content">Lifestyle to share</label>
+
+
+    <a class="btn btn-primary btn-fab btn-raised mdi-content-add"
+         ng-click="vm.openDialog()"
+         href="javascript:void(0)"
+         >Add Image</a>
+    <img ng-show="image" ng-src="{{vm.image}}"  onError="angular.element(this).scope().image = false"  width=300 height=300 />
+
     <textarea class="form-control"
               id="post__content"
               rows="3"
-              placeholder="ex. This is my first time posting on Not Google Plus!"
+              placeholder=""
               ng-model="vm.content">
     </textarea>
   </div>

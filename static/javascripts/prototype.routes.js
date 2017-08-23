@@ -17,6 +17,14 @@ function config($routeProvider) {
     controller: 'LoginController',
     controllerAs: 'vm',
     templateUrl: '/static/templates/authentication/login.html'
+  }).when('/images', {
+    controller: 'ImagesController',
+    controllerAs: 'vm',
+    templateUrl: '/static/templates/images/images0.html'
+  }).when('/wishlist', {
+  controller: 'IndexController',
+  controllerAs: 'vm',
+  templateUrl: '/static/templates/wishlist/wishlist.html'
   }).when('/', {
   controller: 'IndexController',
   controllerAs: 'vm',

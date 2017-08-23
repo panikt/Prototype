@@ -1,6 +1,7 @@
-from django.contrib.auth.models import AbstractBaseUser
-from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
+from django.utils.translation import ugettext as _
+from enumfields import Enum, EnumField
 
 class AccountManager(BaseUserManager):
         def create_user(self, email, password=None, **kwargs):
@@ -26,7 +27,13 @@ class AccountManager(BaseUserManager):
 
             return account
 
+class GenderType(Enum):
+    MALE = 'MALE'
+    FEMALE = 'FEMALE'
+
 class Account(AbstractBaseUser):
+
+
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=40,unique=True)
 
@@ -35,6 +42,14 @@ class Account(AbstractBaseUser):
     tagline = models.CharField(max_length=140,blank=True)
 
     is_admin = models.BooleanField(default=False)
+    phone_number1 = models.CharField(max_length=40,blank=True)
+    phone_number2 = models.CharField(max_length=40,blank=True)
+    address1 = models.CharField(max_length=100,blank=True)
+    address2 = models.CharField(max_length=100,blank=True)
+    address3 = models.CharField(max_length=100,blank=True)
+    dob = models.DateTimeField(null=True, blank=True)
+    image = models.CharField(max_length=255,blank=True,default='http://127.0.0.1:8000/media/gallery/default.png')
+    gender = EnumField(GenderType,null=True)
 
     CreatedAt = models.DateTimeField(auto_now_add=True)
     ModifiedAt = models.DateTimeField(auto_now=True)
@@ -43,6 +58,8 @@ class Account(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
+
+
 
     def __str__(self):
         return self.email
