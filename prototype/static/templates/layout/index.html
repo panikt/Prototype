@@ -1,0 +1,34 @@
+
+
+
+<div class="jumbotron">
+     <div class="container">
+       <p>Search for lifestyles</p>
+       <p>
+          <form role="form" class="settings" ng-submit="vm.update()">
+          <input type="text" class="form-control" id="settings__email" ng-model="vm.profile.email" placeholder="ex. Math Tutor" />
+          <a class="btn btn-primary btn-lg"
+              href="/wishlist/"
+              role="button">FIND NOW! &raquo;</a> OR
+          <a class="btn btn-primary btn-lg"
+              href="javascript:void(0)"
+              ng-dialog="/static/templates/posts/new-post.html"
+              ng-dialog-controller="NewPostController as vm"
+              role="button">START SHARING &raquo;</a>
+      </p>
+   </div>
+ </div>
+
+
+<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+   <label>Top Providers</label>
+   <providerlist providerlist="vm.providerlist"
+                 ng-show="vm.providerlist && vm.providerlist.length">
+   </providerlist>
+</div>
+
+<!--  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <label>WishList's Activities</label>
+
+      <posts posts="vm.posts" ng-show="vm.posts && vm.posts.length"></posts>
+  </div> -->

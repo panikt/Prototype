@@ -1,0 +1,13 @@
+  <div ng-repeat="column in vm.columns.slice().reverse()| orderBy:'-'">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div ng-repeat="post in column ">
+        <post post="post"></post>
+      </div>
+    </div>
+  </div>
+
+  <div ng-hide="vm.columns && vm.columns.length">
+    <div class="col-sm-12 no-posts-here">
+      <em>There are no posts here.</em>
+    </div>
+  </div>
