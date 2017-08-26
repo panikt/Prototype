@@ -12,6 +12,7 @@ $RECYCLE.BIN/
 __pycache__/
 *.py[cod]
 *.sqlite3
+static_root/
 
 # C extensions
 *.so
