@@ -16,7 +16,6 @@ import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -46,6 +45,7 @@ INSTALLED_APPS = [
     'compressor',
     'posts',
     'images',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -126,7 +126,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+AWS_STORAGE_BUCKET_NAME = 'pyntohcdn'
+AWS_S3_REGION_NAME = 'ap-southeast-1'  # e.g. us-east-2
 
+# Tell django-storages the domain to use to refer to static files.
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+# AWS Credentials
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#storages.backends.s3boto.S3BotoStorage'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 

@@ -48,7 +48,7 @@ class Account(AbstractBaseUser):
     address2 = models.CharField(max_length=100,blank=True)
     address3 = models.CharField(max_length=100,blank=True)
     dob = models.DateTimeField(null=True, blank=True)
-    image = models.CharField(max_length=255,blank=True,default='http://127.0.0.1:8000/media/gallery/default.png')
+    image = models.CharField(max_length=255,blank=False,default='/static/images/anonymous.png')
     gender = EnumField(GenderType,null=True)
 
     CreatedAt = models.DateTimeField(auto_now_add=True)
