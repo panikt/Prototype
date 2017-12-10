@@ -69,11 +69,12 @@
         <input type="text" class="form-control" id="settings__number3" ng-model="vm.profile.address3" placeholder="" />
       </div>
 
-        <ui-gmap-google-map center='map.center' zoom='map.zoom' >
+      <div data-ng-if="render">
+        <ui-gmap-google-map center='map.center' zoom='map.zoom' event="vm.onEvent()" >
            <ui-gmap-marker coords="marker.coords" options="marker.options" idkey="marker.id">
            </ui-gmap-marker>
         </ui-gmap-google-map>
-
+      </div>
 
       <div class="form-group">
         <label for="settings__dob">Date of Birth</label>
