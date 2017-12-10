@@ -42,13 +42,24 @@
 
     // The "then" callback function provides the google.maps object.
         uiGmapGoogleMapApi.then(function(maps) {
-             console.log('Google Maps loaded');
              $scope.render = false;
              $timeout(function () {
-               console.log('Google Maps loaded222');
+               $scope.map = {
+                   center: {
+                     latitude: vm.profile.lat ,
+                     longitude: vm.profile.lon
+                   }, zoom: 16 };
+               $scope.marker = {
+                 id: 0,
+                 coords: {
+                   latitude: vm.profile.lat ,
+                   longitude: vm.profile.lon
+                 },
+                 options: { draggable: false }
+               };
+
                $scope.render = true;
 
-            //  maps.event.trigger( 'resize');
           },2000);
           //
         });
@@ -89,6 +100,7 @@
       function profileSuccessFn(data, status, headers, config) {
         vm.profile = data.data;
         vm.profile.dob = new Date(vm.profile.dob);
+        vm.address = vm.profile.address1;
 
       }
 
@@ -104,23 +116,32 @@
 
 
     function addr1Changed() {
-      console.log(vm.profile.address1);
-      if (typeof vm.profile.address1.geometry != 'undefined')
+      console.log(vm.address);
+
+      if (typeof vm.address.geometry != 'undefined')
       {
+        vm.profile.address1 = vm.address.name;
+        vm.profile.lat = vm.address.geometry.location.lat();
+        vm.profile.lon = vm.address.geometry.location.lng();
+
         $scope.map = {
             center: {
-              latitude: vm.profile.address1.geometry.location.lat(),
-              longitude: vm.profile.address1.geometry.location.lng()
+              latitude: vm.profile.lat ,
+              longitude: vm.profile.lon
             }, zoom: 16 };
         $scope.marker = {
           id: 0,
           coords: {
-            latitude: vm.profile.address1.geometry.location.lat(),
-            longitude: vm.profile.address1.geometry.location.lng()
+            latitude: vm.profile.lat ,
+            longitude: vm.profile.lon
           },
           options: { draggable: false }
         };
 
+
+      }
+      else {
+        vm.profile.address1 = vm.address;
 
       }
     }

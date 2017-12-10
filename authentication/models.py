@@ -50,7 +50,8 @@ class Account(AbstractBaseUser):
     dob = models.DateTimeField(null=True, blank=True)
     image = models.CharField(max_length=255,blank=False,default='/static/images/anonymous.png')
     gender = EnumField(GenderType,null=True)
-
+    lat = models.FloatField( blank=True, null=True)
+    lon = models.FloatField( blank=True, null=True)
     CreatedAt = models.DateTimeField(auto_now_add=True)
     ModifiedAt = models.DateTimeField(auto_now=True)
 

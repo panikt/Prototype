@@ -11,6 +11,7 @@ class AccountSerializer(EnumFieldSerializerMixin, serializers.ModelSerializer):
         fields = ('id', 'email', 'username','CreatedAt', 'ModifiedAt',
                 'first_name', 'last_name', 'tagline', 'password', 'confirm_password', 'image',
                 'phone_number1','phone_number2', 'address1','address2','address3','dob','gender',
+                'lat', 'lon',
                  )
         read_only_fields = ('CreatedAt', 'ModifiedAt')
 
