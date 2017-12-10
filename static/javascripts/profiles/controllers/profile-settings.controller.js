@@ -43,13 +43,11 @@
     // The "then" callback function provides the google.maps object.
         uiGmapGoogleMapApi.then(function(maps) {
              console.log('Google Maps loaded');
-             $scope.render = false;
-
+             
              $timeout(function () {
                console.log('Google Maps loaded222');
-               $scope.render = true;
 
-               google.maps.event.trigger($scope.map, 'resize');
+               google.maps.event.trigger(maps, 'resize');
              }, 5000);
           //
         });
