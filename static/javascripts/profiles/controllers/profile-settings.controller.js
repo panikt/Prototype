@@ -1,6 +1,6 @@
 /**
 * ProfileSettingsController
-* @namespace thinkster.profiles.controllers
+* @namespace .profiles.controllers
 */
 (function () {
   'use strict';
@@ -17,18 +17,28 @@
   * @namespace ProfileSettingsController
   */
   function ProfileSettingsController($location, $routeParams, Authentication, Profile, Snackbar, Images, $scope, Upload, $timeout, ngDialog, uiGmapGoogleMapApi) {
-    var vm = this;
+    let vm = this;
 
     vm.destroy = destroy;
     vm.update = update;
     vm.newImage = {};
     vm.imagesToUpload = {};
+    vm.onAddr1Changed = addr1Changed;
 
     $scope.map = {
         center: {
               latitude: 45,
               longitude: -73
             }, zoom: 8 };
+
+    $scope.marker = {
+              id: 0,
+              coords: {
+                latitude: 45,
+                longitude: -73
+              },
+              options: { draggable: false } };
+
     // The "then" callback function provides the google.maps object.
         uiGmapGoogleMapApi.then(function(maps) {
             console.log('Google Maps loaded');
@@ -46,8 +56,8 @@
     * @memberOf thinkster.profiles.controllers.ProfileSettingsController
     */
     function activate() {
-      var authenticatedAccount = Authentication.getAuthenticatedAccount();
-      var username = $routeParams.username.substr(1);
+      let authenticatedAccount = Authentication.getAuthenticatedAccount();
+      let username = $routeParams.username.substr(1);
 
       // Redirect if not logged in
       if (!authenticatedAccount) {
@@ -83,6 +93,28 @@
       }
     }
 
+
+    function addr1Changed() {
+      console.log(vm.profile.address1);
+      if (typeof vm.profile.address1.geometry != 'undefined')
+      {
+        $scope.map = {
+            center: {
+              latitude: vm.profile.address1.geometry.location.lat(),
+              longitude: vm.profile.address1.geometry.location.lng()
+            }, zoom: 16 };
+        $scope.marker = {
+          id: 0,
+          coords: {
+            latitude: vm.profile.address1.geometry.location.lat(),
+            longitude: vm.profile.address1.geometry.location.lng()
+          },
+          options: { draggable: false }
+        };
+
+
+      }
+    }
 
     /**
     * @name destroy

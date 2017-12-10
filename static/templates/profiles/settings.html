@@ -63,19 +63,15 @@
 
       <div class="form-group" id = "setting_address">
         <label for="settings__number1">Addresses</label>
-        <input type="text" class="form-control" id="settings__number1" ng-model="vm.profile.address1" placeholder="" />
+        <input type="text" class="form-control" id="settings__number1"
+                      g-places-autocomplete ng-model="vm.profile.address1" ng-change="vm.onAddr1Changed()" placeholder="" />
         <input type="text" class="form-control" id="settings__number2" ng-model="vm.profile.address2" placeholder="" />
         <input type="text" class="form-control" id="settings__number3" ng-model="vm.profile.address3" placeholder="" />
       </div>
 
         <ui-gmap-google-map center='map.center' zoom='map.zoom' >
-          <ui-gmap-search-box
-            position='TOP_LEFT'
-            events="searchbox.events"
-            >
-
-          </ui-gmap-search-box>
-
+           <ui-gmap-marker coords="marker.coords" options="marker.options" idkey="marker.id">
+           </ui-gmap-marker>
         </ui-gmap-google-map>
 
 
