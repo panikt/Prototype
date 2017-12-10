@@ -49,7 +49,7 @@
                $scope.render = true;
 
             //  maps.event.trigger( 'resize');
-             }, 5000);
+             });
           //
         });
 
