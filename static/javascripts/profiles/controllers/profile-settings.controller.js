@@ -27,6 +27,7 @@
 
     $scope.map = {
         center: {
+
               latitude: 45,
               longitude: -73
             }, zoom: 8 };
@@ -42,6 +43,13 @@
     // The "then" callback function provides the google.maps object.
         uiGmapGoogleMapApi.then(function(maps) {
             console.log('Google Maps loaded');
+            $scope.map = {
+                center: {
+
+                      latitude: 45,
+                      longitude: -73
+                    }, zoom: 9 };
+
         });
 
 
